@@ -5,6 +5,7 @@
 local HOVER = "foreground/0.08"
 local RADIUS = { control = 10, group = 14, panel = 20 }
 local DURATION = 0.18
+local COVERS = { background = true, surface = true, elevatedSurface = true }
 local PANEL_GLOW = { 0.35, 0.7, 1.4, 0.35 }
 
 -- Items keep their full size from a 32 pt menu bar up to the 40 pt default, then grow with the bar.
@@ -125,7 +126,8 @@ end
 local function workspaceGroup(ctx, pills, _, style, m)
     local settings = ctx.data.settings or {}
     local color, width = settings.cover, settings.coverWidth
-    if type(color) ~= "string" or not string.match(color, "^#%x%x%x%x%x%x$") or type(width) ~= "number" or m.vertical then
+    local valid = COVERS[color] or type(color) == "string" and string.match(color, "^#%x%x%x%x%x%x$")
+    if not valid or type(width) ~= "number" or m.vertical then
         return nil
     end
     local app = ctx.data.menuApp

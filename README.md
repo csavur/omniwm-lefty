@@ -4,7 +4,7 @@ A style for [OmniWM](https://github.com/OmniNull/OmniWM) 0.8 or later.
 
 | Style | Summary |
 | --- | --- |
-| [Lefty](styles/lefty) | A quiet bar with pill-shaped workspaces, a blue accent and a slow glow. |
+| [Lefty](styles/lefty) | Workspaces on the left, your macOS menu bar on the right. |
 
 ## Install
 

@@ -1,46 +1,32 @@
 # Lefty
 
-A quiet bar with pill-shaped workspaces, a blue accent and a slow glow.
+Workspaces on the left, your macOS menu bar on the right.
 
 ## Previews
 
-The optional left-side setup described below, with a matched cover and the native palette. The default is a full-width bar.
+![Workspaces on the left, with the cover matched to the wallpaper](previews/left.png)
 
-![Workspaces on the left over a matched cover](previews/left.png)
+Shown with the cover matched to the wallpaper and the native palette. By default the cover is the palette's surface colour.
 
 ## What it changes
 
-A 40 pt full-width bar on neutral greys that follows the system's light and dark appearance. Workspaces are numbered circles, and the focused one becomes a filled blue pill; the accent is otherwise kept for primary controls. Popouts have rounded panels and groups. A shader draws a slow glow and a few sparks along the bottom edge, below the text.
+A half-width bar in the menu bar's left corner. Workspaces are numbered circles, and the focused one becomes a filled blue pill. The macOS menu bar items on the right stay as they are. The bar hides the current app's menus and adds an Apple button and an app button that open them. Popouts have rounded panels with a faint glow along the bottom edge. The palette follows the system's light and dark appearance.
 
 ## Controls and commands
 
-Widgets keep their usual controls. Adjust Glow under **Settings > Styles & Widgets > Bar**: intensity, motion speed, spark size and glow height. Set intensity to 0 for a plain bar, motion speed to 0 for a still one, or spark size to 0 for the glow alone.
-
-To keep the native macOS menu bar items on the right, turn **Full Width** off. Then either use the notch mode **Fill Left of Notch** with **Solid Black Background** and the Lefty Dark palette, or give the workspaces widget an opaque cover in `shell.toml`, so the app menus do not show through a transparent bar:
+Change these in `shell.toml`, under your profile:
 
 ```toml
-[profiles.lefty]
-leading = ["workspaces"]
-center = []
-trailing = []
-
-[profiles.lefty.workspaceBar]
-fullWidth = false
-notchMode = "off"
-height = 32
-transparentBackground = true
-solidBlackBackground = false
-xOffset = -529                 # (coverWidth + 8) / 2 - half the display's width
-yOffset = 1                    # menu bar height minus the bar's height
-
 [profiles.lefty.widgets.workspaces]
-indicator = "numbers"
-cover = "#0C1733"              # a #RRGGBB colour close to your wallpaper's top edge
-coverWidth = 662               # wide enough for app menus, clear of icons left of the notch
+cover = "#0C1733"   # surface, background, elevatedSurface or a #RRGGBB colour
+coverWidth = 600    # the bar's width in points, minus 8
 ```
 
-These values are for a 1728 pt wide display. The cover is one fixed colour and width, so it suits a still wallpaper and one display. It adds Apple and app menu buttons. The glow is not drawn in either setup. Menu bar icons that macOS moves to the left of the notch stay usable when the cover ends before them, which Fill Left of Notch does not allow.
+- A transparent bar would show the app menus through the workspaces, so the cover is opaque. For a transparent look, set it to a colour close to your wallpaper's top edge. It is one fixed colour, so this suits a still wallpaper.
+- `coverWidth` hides app menus up to that width. Keep it short of the notch: macOS may move menu bar icons to the left of the notch, and they need that gap to stay visible and clickable.
+- The default fits a 33 pt menu bar. On a display with a different one, set `yOffset` to the menu bar's height minus 32.
+- Keep workspaces as the bar's only widget. Others would not be covered.
 
 ## Credits and licences
 
-Style code is GPL-2.0-only, as declared in [style.toml](style.toml). The look module follows the structure of OmniWM's Sakura style, (C) 2026 OmniNull, GPL-2.0-only. No fonts or images are bundled; text uses the system font.
+Style code is GPL-2.0-only, as declared in [style.toml](style.toml). The look module follows the structure of OmniWM's Sakura style, (C) 2026 OmniNull, GPL-2.0-only. No fonts are bundled; text uses the system font.
