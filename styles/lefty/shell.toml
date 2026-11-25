@@ -1,0 +1,35 @@
+# SPDX-License-Identifier: GPL-2.0-only
+
+theme = "lefty"
+leading = ["apple-menu", "app-menu", "omniwm", "workspaces", "scratchpads", "active-window"]
+center = ["clock"]
+trailing = ["media", "notifications", "volume", "wifi", "battery-details", "control-center", "system-stats"]
+hiddenBarWidget = "hidden-bar"
+systemStatsWidget = "system-stats"
+
+[barShader]
+source = "glow.metal"
+fps = 24
+values = [0.6, 1, 1.2, 0.4]
+
+[widgets.workspaces]
+indicator = "numbers"
+
+[widgets.active-window]
+display = "text_only"
+maxWidth = 160
+
+[workspaceBar]
+position = "overlappingMenuBar"
+height = 40
+fullWidth = true
+reserveLayoutSpace = true
+transparentBackground = false
+backgroundOpacity = 1
+showItemBackgrounds = false
+showAccentHighlights = true
+solidBlackBackground = false
+showLabels = true
+xOffset = 0
+yOffset = 0
+barFill = "surface"
